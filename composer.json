@@ -1,0 +1,28 @@
+{
+  "name"             : "vi-kon/laravel-support",
+  "description"      : "Support package for Laravel 5.1",
+  "version"          : "0.0.1",
+  "keywords"         : [
+    "laravel",
+    "admin"
+  ],
+  "authors"          : [
+    {
+      "name" : "Kovács Vince",
+      "email": "vincekovacs@hotmail.com"
+    }
+  ],
+  "require"          : {
+    "php"                : ">=5.5.9",
+    "illuminate/database": "~5.1"
+  },
+  "autoload"         : {
+    "psr-4": {
+      "ViKon\\Support\\": "src/ViKon/Support"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "minimum-stability": "stable"
+}
