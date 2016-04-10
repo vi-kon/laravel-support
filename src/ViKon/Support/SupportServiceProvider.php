@@ -3,7 +3,6 @@
 namespace ViKon\Support;
 
 use Illuminate\Support\ServiceProvider;
-use ViKon\Support\Middleware\View\ShareSuccessesFromSession;
 
 /**
  * Class SupportServiceProvider
@@ -29,8 +28,6 @@ class SupportServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadResources();
-
-        $this->app->make('Illuminate\Contracts\Http\Kernel')->pushMiddleware(ShareSuccessesFromSession::class);
     }
 
     /**
