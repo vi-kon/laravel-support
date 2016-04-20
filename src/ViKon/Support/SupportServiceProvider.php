@@ -2,7 +2,9 @@
 
 namespace ViKon\Support;
 
+use Illuminate\Contracts\Container\Container;
 use Illuminate\Support\ServiceProvider;
+use ViKon\Support\Route\RouteBinderRegister;
 
 /**
  * Class SupportServiceProvider
@@ -18,6 +20,7 @@ class SupportServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerParameterBinder();
     }
 
     /**
@@ -40,5 +43,17 @@ class SupportServiceProvider extends ServiceProvider
         $resourcePath = __DIR__ . '/../../resources/';
 
         $this->loadViewsFrom($resourcePath . 'views', 'vi-kon.support');
+    }
+
+    /**
+     * Register route parameter binder
+     *
+     * @return void
+     */
+    protected function registerParameterBinder()
+    {
+        $this->app->singleton(RouteBinderRegister::class, function (Container $container) {
+            return new RouteBinderRegister($container, $container->make('router'));
+        });
     }
 }
