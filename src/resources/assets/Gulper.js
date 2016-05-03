@@ -10,6 +10,7 @@ var minifyCss  = require('gulp-minify-css');
 var uglify     = require('gulp-uglify');
 var notify     = require("gulp-notify");
 var livereload = require('gulp-livereload');
+var debug      = require('gulp-debug');
 var revDel     = require('rev-del');
 var path       = require('path');
 var _          = require('underscore');
@@ -79,6 +80,7 @@ Gulper.prototype.registerTasks = function () {
         _.map(paths.copy, function (source, destination) {
             gulp
                 .src(source)
+                .pipe(debug({title: 'copy:'}))
                 .pipe(gulp.dest(path.join(paths.build, destination)))
                 .pipe(livereload());
         });
@@ -88,6 +90,7 @@ Gulper.prototype.registerTasks = function () {
         _.map(paths.css, function (source, destination) {
             gulp
                 .src(source)
+                .pipe(debug({title: 'css:'}))
                 .pipe(gulpif(!production, sourcemaps.init()))
                 .pipe(less({paths: paths.lessInclude}))
                 .pipe(concat({path: destination, cwd: ''}))
@@ -107,6 +110,7 @@ Gulper.prototype.registerTasks = function () {
         _.map(paths.js, function (source, destination) {
             gulp
                 .src(source)
+                .pipe(debug({title: 'js:'}))
                 .pipe(gulpif(!production, sourcemaps.init()))
                 .pipe(concat({path: destination, cwd: ''}))
                 .pipe(rename({suffix: '.min'}))
