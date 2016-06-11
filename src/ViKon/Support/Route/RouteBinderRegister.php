@@ -24,6 +24,7 @@ class RouteBinderRegister
     /** @type \Illuminate\Routing\Router */
     protected $router;
 
+    /** @type callable[] */
     protected $binders = [];
 
     /**
