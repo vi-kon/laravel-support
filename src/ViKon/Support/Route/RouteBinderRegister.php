@@ -52,8 +52,8 @@ class RouteBinderRegister
     public function model($key, $class, Closure $callback = null)
     {
         $this->bind($key, function ($value) use ($class, $callback) {
-            if (is_null($value)) {
-                return;
+            if ($value === null) {
+                return null;
             }
 
             // For model binders, we will attempt to retrieve the models using the first
